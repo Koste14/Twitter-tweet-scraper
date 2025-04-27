@@ -32,18 +32,18 @@ pip install -r requirements.txt
 
 ## Setup and configuration
 
-1) Clone the repository:
+1. Clone the repository:
 
-git clone https://github.com/Koste14/Twitter-tweet-scraper.git
+```git clone https://github.com/Koste14/Twitter-tweet-scraper.git```
 
-cd Twitter-tweet-scraper
+```cd Twitter-tweet-scraper```
 
 
-2) Install required dependencies:
+2. Install required dependencies:
 
-pip install -r requirements.txt
+```pip install -r requirements.txt```
 
-3) Configure your credentials, file location and other settings in configure.py file:
+3. Configure your credentials, file location and other settings in configure.py file:
 
 ```EMAIL = 'your_email@example.com'
 USERNAME = 'your_username_or_phone'
@@ -55,4 +55,4 @@ FILE_LOCATION = 'PATH/twitter_tweets.xlsx'
 
 ## Usage
 Run the script with:
-python src/twitter_scraping.py
+```python src/twitter_scraping.py```
