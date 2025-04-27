@@ -48,11 +48,8 @@ pip install -r requirements.txt
 ```EMAIL = 'your_email@example.com'
 USERNAME = 'your_username_or_phone'
 PASSWORD = 'your_password'
-CELEBRITY_NAME = 'Luka Doncic'
-TWEET_LIMIT = 200
-FILE_LOCATION = 'PATH/twitter_tweets.xlsx'
 ```
 
 ## Usage
 Run the script with:
-```python src/twitter_scraping.py```
+```python -m src.twitter_scraping --celebrity "CELEBRITY_NAME" --tweets AMOUNT_OF_TWEETS```

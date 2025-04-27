@@ -6,10 +6,10 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 import pandas as pd
-import config.config as config
+from config import config
+import argparse
 
-# Setting up Chrome options and passing them to uc
-
+# entering email, password and username in twitter
 def login_to_twitter(driver):
 
     driver.get(config.TWITTER_URL) # twitter login url
@@ -30,7 +30,7 @@ def login_to_twitter(driver):
         phone_username_confirm.send_keys(config.USERNAME)
         time.sleep(1)
         phone_username_confirm.send_keys(Keys.ENTER)
-    except:
+    except NoSuchElementException:
         pass
 
     # Waiting for password box to show up and entering password
@@ -45,12 +45,14 @@ def login_to_twitter(driver):
     time.sleep(1)
     cookie_reject.click()
 
+# checking if there's a retry button for content after clicking on celebrity
 def retry_button(driver):
     try:
         driver.find_element(By.XPATH, '//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div[1]/div/div[3]/div/div/div[3]/button').click()
     except NoSuchElementException:
         pass
 
+# looking up a specific celebrity
 def searching_celebrity(driver, celebrity_name):
 
     # Finding search box element in twitter page and entering string into the field
@@ -70,6 +72,7 @@ def searching_celebrity(driver, celebrity_name):
     # clicking retry button in case it appears
     retry_button(driver)
 
+# getting all the tweets
 def getting_tweets(driver, tweet_limit):
     # Setting empty set and list to find and store unique strings
     uniqueTweets = set()
@@ -98,19 +101,28 @@ def getting_tweets(driver, tweet_limit):
             break
     return rows
 
+# saving file to the excel
 def saving_to_excel(rows, path):
     table = pd.DataFrame(rows)
     table.to_excel(path, index=False)
     print(f"Saved {len(table)} tweets to {path}")
 
+# settings flags for celebrity and page input
+def setting_args():
+    parser = argparse.ArgumentParser(description='Fetch tweets from specific celebrity')
+    parser.add_argument('--celebrity', required=True, help='Choose a celebrity')
+    parser.add_argument('--tweets', required=True, type=int, help='How many tweets you want to collect')
+    parser.add_argument('--output', default='twitter_tweets.xlsx', help='Output excel file name')
+    return parser.parse_args()
 
 def main():
+    args = setting_args()
     driver = config.setup_driver()
     try:
         login_to_twitter(driver)
-        searching_celebrity(driver, config.CELEBRITY_NAME)
-        tweets = getting_tweets(driver, config.AMOUNT_OF_TWEETS)
-        saving_to_excel(tweets, config.FILE_LOCATION)
+        searching_celebrity(driver, args.celebrity)
+        tweets = getting_tweets(driver, args.tweets)
+        saving_to_excel(tweets, args.output)
     finally:
         driver.quit()
         del driver
