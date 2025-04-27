@@ -35,6 +35,7 @@ pip install -r requirements.txt
 1) Clone the repository:
 
 git clone https://github.com/Koste14/Twitter-tweet-scraper.git
+
 cd Twitter-tweet-scraper
 
 
