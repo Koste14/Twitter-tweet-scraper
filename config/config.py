@@ -1,8 +1,8 @@
 import undetected_chromedriver as uc
 
-EMAIL = 'oposumas345@gmail.com'
-USERNAME = 'Conall1831262'
-PASSWORD = 'Testukas345'
+EMAIL = 'your_email@example.com'
+USERNAME = 'your_username'
+PASSWORD = 'your_password'
 TWITTER_URL = 'https://x.com/i/flow/login'
 
 def setup_driver():
