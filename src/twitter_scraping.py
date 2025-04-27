@@ -6,7 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 import pandas as pd
-import config.config
+import config.config as config
 
 # Setting up Chrome options and passing them to uc
 
@@ -110,7 +110,7 @@ def main():
         login_to_twitter(driver)
         searching_celebrity(driver, config.CELEBRITY_NAME)
         tweets = getting_tweets(driver, config.AMOUNT_OF_TWEETS)
-        saving_to_excel(tweets,'C:/Users/kosta/Documents/twitter_tweets.xlsx')
+        saving_to_excel(tweets, config.FILE_LOCATION)
     finally:
         driver.quit()
         del driver
