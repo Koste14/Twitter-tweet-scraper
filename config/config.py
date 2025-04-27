@@ -1,12 +1,12 @@
 import undetected_chromedriver as uc
 
-EMAIL = 'oposumas345@gmail.com'
-USERNAME = 'Conall1831262'
-PASSWORD = 'Testukas345'
+EMAIL = 'your_email@example.com'
+USERNAME = 'your_username_or_phone'
+PASSWORD = 'your_password'
 TWITTER_URL = 'https://x.com/i/flow/login'
 CELEBRITY_NAME = 'Luka Doncic'
 AMOUNT_OF_TWEETS = 200
-FILE_LOCATION = 'C:/Users/kosta/Documents/twitter_tweets.xlsx'
+FILE_LOCATION = 'PATH/twitter_tweets.xlsx'
 
 def setup_driver():
     options = uc.ChromeOptions()
